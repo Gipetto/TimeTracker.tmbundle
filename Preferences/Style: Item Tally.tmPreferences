@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Style: Item Tally</string>
+	<key>scope</key>
+	<string>meta.item-tally.time</string>
+	<key>settings</key>
+	<dict>
+		<key>background</key>
+		<string>#FFFFFF</string>
+		<key>fontStyle</key>
+		<string>normal</string>
+		<key>foreground</key>
+		<string>#0A4E01</string>
+	</dict>
+	<key>uuid</key>
+	<string>4597D7BC-C678-48E0-8026-602C4BBB44DB</string>
+</dict>
+</plist>

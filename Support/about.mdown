@@ -1,0 +1,29 @@
+## :: about
+
+TimeTracker is a simple text based solution for tracking hours spent on projects. 
+
+## :: example
+
+The easiest way to demonstrate it might be to show examples.
+
+**While recording data:**
+
+<pre class="textmate-source"><span class="text text_plain text_plain_time"><span class="meta meta_header-item meta_header-item_time"><span class="meta meta_header meta_header_time"># My Project
+</span></span><span class="meta meta_line-item meta_line-item_time">- my first task <span class="meta meta_item meta_item_time">[8a-12p]</span> </span>
+<span class="meta meta_line-item-aux meta_line-item-aux_time">    <span class="meta meta_item-aux meta_item-aux_time">- a note about this task</span></span>
+<span class="meta meta_line-item meta_line-item_time">- my second task <span class="meta meta_item meta_item_time">[1-3:05p,4p-5p]</span> </span></span></pre>
+
+**Use control-shift-T to tally the time:**
+
+<pre class="textmate-source"><span class="text text_plain text_plain_time"><span class="meta meta_header-item meta_header-item_time"><span class="meta meta_header meta_header_time"># My Project
+</span></span><span class="meta meta_line-item meta_line-item_time">- my first task <span class="meta meta_item meta_item_time">[8a-12p]</span> <span class="meta meta_item-tally meta_item-tally_time">(4.0)</span></span>
+<span class="meta meta_line-item-aux meta_line-item-aux_time">    <span class="meta meta_item-aux meta_item-aux_time">- a note about this task</span></span>
+<span class="meta meta_line-item meta_line-item_time">- my second task <span class="meta meta_item meta_item_time">[1-3:05p,4p-5:22p]</span> <span class="meta meta_item-tally meta_item-tally_time">(3.5)</span></span>
+<span class="meta meta_line-total meta_line-total_time"><span class="meta meta_total meta_total_time">+ project: <span class="meta meta_item-tally meta_item-tally_time">7.5</span></span></span>
+ 
+<span class="meta meta_line-total meta_line-total_time"><span class="meta meta_total meta_total_time">++ total: <span class="meta meta_item-tally meta_item-tally_time">7.5</span></span></span></span></pre>
+
+## :: commands
+
+
+
