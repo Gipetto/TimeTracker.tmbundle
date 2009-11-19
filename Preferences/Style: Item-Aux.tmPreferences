@@ -8,8 +8,6 @@
 	<string>meta.item-aux.time</string>
 	<key>settings</key>
 	<dict>
-		<key>background</key>
-		<string>#FFFFFF</string>
 		<key>foreground</key>
 		<string>#999999</string>
 	</dict>

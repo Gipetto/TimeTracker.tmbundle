@@ -8,8 +8,6 @@
 	<string>meta.item-tally.time</string>
 	<key>settings</key>
 	<dict>
-		<key>background</key>
-		<string>#FFFFFF</string>
 		<key>fontStyle</key>
 		<string>normal</string>
 		<key>foreground</key>

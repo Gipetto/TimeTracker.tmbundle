@@ -8,8 +8,6 @@
 	<string>meta.header.time</string>
 	<key>settings</key>
 	<dict>
-		<key>background</key>
-		<string>#FFFFFF</string>
 		<key>fontStyle</key>
 		<string>bold underline</string>
 		<key>foreground</key>

@@ -24,6 +24,3 @@ The easiest way to demonstrate it might be to show examples.
 <span class="meta meta_line-total meta_line-total_time"><span class="meta meta_total meta_total_time">++ total: <span class="meta meta_item-tally meta_item-tally_time">7.5</span></span></span></span></pre>
 
 ## :: commands
-
-
-
