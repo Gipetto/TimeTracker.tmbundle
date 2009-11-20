@@ -11,7 +11,7 @@ module TimeTracker
   
   def self.now
     t = Time.now
-    minutes_rounded = ((t.strftime("%M").to_f/5).round()*5).to_s;
+    minutes_rounded = "%02d" % ((t.strftime("%M").to_f/5).round()*5).to_s;
     now = t.strftime("%I").gsub(/^0/,'') + ":" + minutes_rounded + t.strftime("%p").chop().downcase()
     now += '-' if Word.current_word('-^') != '-'
         
