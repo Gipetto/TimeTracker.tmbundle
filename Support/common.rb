@@ -40,22 +40,23 @@ module TimeTracker
             next if t[0] == nil || t[1] == nil
             
             # there has to be a more elegant way of handling this...
-            if t[0].split(':')[0].to_f > t[1].split(':')[0].to_f
-              # handle crossing noon or midnight
-              t[0] += 'a' if !t[0].strip().match(/a$/)
-              t[1] += 'p' if !t[1].strip().match(/p$/)
-            elsif t[0].strip().match(/(a|p)/) && !t[1].strip().match(/(a|p)/)
-              t[1] += t[0][/(a|p)$/]            
-            elsif t[1].strip().match(/(a|p)/) && !t[0].strip().match(/(a|p)/)
-              t[0] += t[1][/(a|p)$/]
-            elsif !t[0].strip().match(/(a|p)/) && !t[1].strip().match(/(a|p)/)
+            if t[0].split(':')[0].to_f > t[1].split(':')[0].to_f # second is greater than first
+              t[0] += 'a' if !t[0].strip().match(/a$/) && t[0].split(':')[0].to_i < 12
+              t[0] += 'p' if !t[0].strip().match(/a$/) && t[0].split(':')[0].to_i > 12
+              t[1] += 'p' if !t[1].strip().match(/p$/)        
+            elsif t[0].strip().match(/(a|p)$/) && !t[1].strip().match(/(a|p)$/) # first designates a/p
+              t[1] += t[1].split(':')[0].to_i < 12 ? t[0][/(a|p)$/] : (t[0].strip().match(/(a)$/) ? 'p' : 'a')   
+            elsif t[1].strip().match(/(a|p)$/) && !t[0].strip().match(/(a|p)$/) # second designates a/p
+              t[0] += t[1].split(':')[0].to_i < 12 ? t[1][/(a|p)$/] : (t[1].strip().match(/(a)$/) ? 'p' : 'a')
+            elsif !t[0].strip().match(/(a|p)$/) && !t[1].strip().match(/(a|p)$/) # nobody designates a/p
               t[0] += 'a'
-              t[1] += 'a'
+              t[1] += (t[1].split(':')[0].to_i < 12 ? 'a' : 'p')
             end
             
             ts = Time.parse(t[0].gsub(/(a|p)/,' \1m'));
             te = Time.parse(t[1].gsub(/(a|p)/,' \1m'));             
-
+puts ts
+puts te
             timestart = ((ts.hour.to_f*3600)+3600)+((((ts.min.to_f/15).round)*15)*60)
             timeend = ((te.hour.to_f*3600)+3600)+((((te.min.to_f/15).round)*15)*60)
             
