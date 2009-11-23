@@ -11,8 +11,22 @@ module TimeTracker
   
   def self.now
     t = Time.now
-    minutes_rounded = "%02d" % ((t.strftime("%M").to_f/5).round()*5).to_s;
-    now = t.strftime("%I").gsub(/^0/,'') + ":" + minutes_rounded + t.strftime("%p").chop().downcase()
+    hour = t.strftime("%I").gsub(/^0/,'').to_i
+    minutes = "%02d" % ((t.strftime("%M").to_f/5).round()*5).to_i
+    meridian = t.strftime("%p").chop().downcase()
+        
+    if minutes == '60'
+      hour = hour+1
+      minutes = 0
+    end 
+    
+    if minutes == 0
+      minutes = ''
+    else
+      minutes = ':' + minutes.to_s
+    end
+    
+    now =  hour.to_s + minutes + meridian
     now += '-' if Word.current_word('-^') != '-'
         
     TextMate.exit_insert_snippet(now)
