@@ -5,18 +5,27 @@ require 'time'
 module TimeTracker
   
   def self.new
-    line = '- ${1} [${2}]'
+    line = '- ${1} [${2:' + self.getnow + '}]'
     TextMate.exit_insert_snippet(line)
   end
   
   def self.now
+    TextMate.exit_insert_snippet(self.getnow)
+  end
+  
+  def self.getnow
     t = Time.now
     hour = t.strftime("%I").gsub(/^0/,'').to_i
     minutes = "%02d" % ((t.strftime("%M").to_f/5).round()*5).to_i
     meridian = t.strftime("%p").chop().downcase()
         
     if minutes == '60'
-      hour = hour+1
+      if hour == 12
+        hour = 1
+        meridian = (meridian == 'p' ? 'a' : 'p')
+      else
+        hour = hour+1
+      end
       minutes = 0
     end 
     
@@ -29,7 +38,7 @@ module TimeTracker
     now =  hour.to_s + minutes + meridian
     now += '-' if Word.current_word('-^') != '-'
         
-    TextMate.exit_insert_snippet(now)
+    return now
   end
   
   def self.tally
