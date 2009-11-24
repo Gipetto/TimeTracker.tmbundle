@@ -6,7 +6,7 @@
 	<dict>
 		<key>items</key>
 		<array>
-			<string>450B5A2B-1711-48BF-9222-C37F36C9ABB3</string>
+			<string>56E43890-273F-4646-9754-6A9B832EACA6</string>
 			<string>938B455D-459C-4369-BF39-23A6957FFC8A</string>
 			<string>------------------------------------</string>
 			<string>4688A671-7378-47EC-91ED-0BD4CD68E7DA</string>
@@ -15,7 +15,18 @@
 			<string>2CFC389A-4448-4FBE-A47F-84B62AD40A85</string>
 		</array>
 		<key>submenus</key>
-		<dict/>
+		<dict>
+			<key>56E43890-273F-4646-9754-6A9B832EACA6</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>CE363F43-2CE6-4217-92A5-726B40D87D7B</string>
+					<string>450B5A2B-1711-48BF-9222-C37F36C9ABB3</string>
+				</array>
+				<key>name</key>
+				<string>New...</string>
+			</dict>
+		</dict>
 	</dict>
 	<key>name</key>
 	<string>TimeTracker</string>
@@ -25,6 +36,7 @@
 		<string>938B455D-459C-4369-BF39-23A6957FFC8A</string>
 		<string>4688A671-7378-47EC-91ED-0BD4CD68E7DA</string>
 		<string>450B5A2B-1711-48BF-9222-C37F36C9ABB3</string>
+		<string>CE363F43-2CE6-4217-92A5-726B40D87D7B</string>
 		<string>2CFC389A-4448-4FBE-A47F-84B62AD40A85</string>
 		<string>015CECA7-1CF0-4F96-BA3C-DB3CAC089EF3</string>
 		<string>2AA18E57-374C-4BDD-9E37-1DB2944C0BB8</string>
