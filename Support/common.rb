@@ -36,9 +36,7 @@ module TimeTracker
     end
     
     now =  hour.to_s + minutes + meridian
-    now += '-' if Word.current_word('-^') != '-'
-        
-    return now
+    now += '-' if Word.current_word('-^') != '-'        
   end
   
   def self.tally
@@ -53,51 +51,66 @@ module TimeTracker
       set.delete_if { |line| line.strip().empty? }
       
       set[0] = '#' + set[0]
-      
-      set.map! { |line|
+    
+      times = set.map! { |line|
         if line.match(/^- /)
           hours = 0.0
-          
-          times = line.match('\[(.*)\]')[1].split(',').map! { |i| 
-            t = i.split('-')
-            next if t[0] == nil || t[1] == nil
-            
-            # there has to be a more elegant way of handling this...
-            if t[0].split(':')[0].to_f > t[1].split(':')[0].to_f # second is greater than first
-              t[0] += 'a' if !t[0].strip().match(/a$/) && t[0].split(':')[0].to_i < 12
-              t[0] += 'p' if !t[0].strip().match(/a$/) && t[0].split(':')[0].to_i > 12
-              t[1] += 'p' if !t[1].strip().match(/p$/)        
-            elsif t[0].strip().match(/(a|p)$/) && !t[1].strip().match(/(a|p)$/) # first designates a/p
-              t[1] += t[1].split(':')[0].to_i < 12 ? t[0][/(a|p)$/] : (t[0].strip().match(/(a)$/) ? 'p' : 'a')   
-            elsif t[1].strip().match(/(a|p)$/) && !t[0].strip().match(/(a|p)$/) # second designates a/p
-              t[0] += t[1].split(':')[0].to_i < 12 ? t[1][/(a|p)$/] : (t[1].strip().match(/(a)$/) ? 'p' : 'a')
-            elsif !t[0].strip().match(/(a|p)$/) && !t[1].strip().match(/(a|p)$/) # nobody designates a/p
-              t[0] += 'a'
-              t[1] += (t[1].split(':')[0].to_i < 12 ? 'a' : 'p')
-            end
-            
-            ts = Time.parse(t[0].gsub(/(a|p)/,' \1m'));
-            te = Time.parse(t[1].gsub(/(a|p)/,' \1m'));             
 
-            timestart = ((ts.hour.to_f*3600)+3600)+((((ts.min.to_f/15).round)*15)*60)
-            timeend = ((te.hour.to_f*3600)+3600)+((((te.min.to_f/15).round)*15)*60)
-            
-            hours += ((timeend-timestart)/60)/60
-            hours = 0.25 if hours == 0
-            hours
+          line.match('\[(.*)\]')[1].split(',').map! { |i| 
+            if i.match(/\-/)
+              hours += self.tally_range(i)
+            elsif i.match(/\./)
+              hours += self.tally_static(i)
+            end
           };
-          
+
           set_hours += hours
           line = line.strip().gsub(/(\(.*\))$/,'').strip() + ' (' + hours.to_s + ')'
         end
         line
       }.push(["  ------------------\n  project: " + set_hours.to_s,' '])
-      
+
       total_hours += set_hours
     end
     
     poc.push(["====================\n  total: " + total_hours.to_s])
     TextMate.exit_replace_document(poc.flatten().join("\n").strip())
+  end
+  
+  def self.tally_static(time)
+    # janky -FIX
+    time.to_f
+  end
+  
+  def self.tally_range(range)
+    time = 0.0
+    
+    t = range.split('-')
+    return time if t[0] == nil || t[1] == nil
+
+    # there has to be a more elegant way of handling this...
+    if t[0].split(':')[0].to_f > t[1].split(':')[0].to_f # first is greater than second
+       t[0] += 'a' if !t[0].strip().match(/a$/) && t[0].split(':')[0].to_i < 12
+       t[0] += 'p' if !t[0].strip().match(/a$/) && t[0].split(':')[0].to_i >= 12
+       t[1] += 'p' if !t[1].strip().match(/p$/)        
+     elsif t[0].strip().match(/(a|p)$/) && !t[1].strip().match(/(a|p)$/) # first designates a/p
+       t[1] += t[1].split(':')[0].to_i < 12 ? t[0][/(a|p)$/] : (t[0].strip().match(/(a)$/) ? 'p' : 'a')   
+     elsif t[1].strip().match(/(a|p)$/) && !t[0].strip().match(/(a|p)$/) # second designates a/p
+       t[0] += t[1].split(':')[0].to_i < 12 ? t[1][/(a|p)$/] : (t[1].strip().match(/(a)$/) ? 'p' : 'a')
+     elsif !t[0].strip().match(/(a|p)$/) && !t[1].strip().match(/(a|p)$/) # nobody designates a/p
+       t[0] += 'a'
+       t[1] += (t[1].split(':')[0].to_i < 12 ? 'a' : 'p')
+     end
+
+    ts = Time.parse(t[0].gsub(/(a|p)/,' \1m'));
+    te = Time.parse(t[1].gsub(/(a|p)/,' \1m'));             
+
+    timestart = ((ts.hour.to_f*3600)+3600)+((((ts.min.to_f/15).round)*15)*60)
+    timeend = ((te.hour.to_f*3600)+3600)+((((te.min.to_f/15).round)*15)*60)
+    
+    time += ((timeend-timestart)/60)/60
+    time = 0.25 if time == 0
+    return time
   end
   
   def self.clean

@@ -43,7 +43,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^-\s+.*(\[[\dap,:\- ]*\])\s?(\([\d\.]*\))?.*?$</string>
+			<string>^-\s+.*(\[[\dap,:\-\. ]*\])\s?(\([\d\.]*\))?.*?$</string>
 			<key>name</key>
 			<string>meta.line-item.time</string>
 		</dict>
