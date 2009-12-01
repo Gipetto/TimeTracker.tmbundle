@@ -34,9 +34,10 @@ module TimeTracker
     else
       minutes = ':' + minutes.to_s
     end
-    
+
     now =  hour.to_s + minutes + meridian
     now += '-' if Word.current_word('-^') != '-'        
+    now
   end
   
   def self.tally
