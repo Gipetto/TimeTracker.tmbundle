@@ -1,6 +1,8 @@
 ## :: about
 
-TimeTracker is a simple text based solution for tracking hours spent on projects. 
+TimeTracker is a simple text based solution for tracking hours spent on projects.
+
+TimeTracker works off a proprietary file extension but is stored in plain text. To get the full text highlighting and functionality automatically save your files with a .time extension. Everything still works if you manually set the file space to TimeTracker, but the file extension on the file will automatically tell TextMate to use the TimeTracker mode & highlighting. 
 
 ## :: commands
 

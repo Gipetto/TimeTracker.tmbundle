@@ -2,7 +2,7 @@
 
 This is a personal project to get myself (and whoever else wants to use it) a simple way to keep records of time spent on projects.
 
-This is not yet ready for primetime.
+This is almost ready for primetime.
 
 # Known Bugs
 
