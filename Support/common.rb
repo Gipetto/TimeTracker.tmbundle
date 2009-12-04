@@ -15,28 +15,8 @@ module TimeTracker
   
   def self.getnow
     t = Time.now
-    hour = t.strftime("%I").gsub(/^0/,'').to_i
-    minutes = "%02d" % ((t.strftime("%M").to_f/5).round()*5).to_i
-    meridian = t.strftime("%p").chop().downcase()
-        
-    if minutes == '60'
-      if hour == 12
-        hour = 1
-        meridian = (meridian == 'p' ? 'a' : 'p')
-      else
-        hour = hour+1
-      end
-      minutes = 0
-    end 
-    
-    if minutes == 0
-      minutes = ''
-    else
-      minutes = ':' + minutes.to_s
-    end
-
-    now =  hour.to_s + minutes + meridian
-    now += '-' if Word.current_word('-^') != '-'        
+    now = t.round(5*60).strftime("%I:%M%p").gsub(/^0/,'').chop().downcase()
+    now += '-' if Word.current_word('-^') != '-'
     now
   end
   
@@ -106,10 +86,14 @@ module TimeTracker
     ts = Time.parse(t[0].gsub(/(a|p)/,' \1m'));
     te = Time.parse(t[1].gsub(/(a|p)/,' \1m'));             
 
-    timestart = ((ts.hour.to_f*3600)+3600)+((((ts.min.to_f/15).round)*15)*60)
-    timeend = ((te.hour.to_f*3600)+3600)+((((te.min.to_f/15).round)*15)*60)
+    #timestart = ((ts.hour.to_f*3600)+3600)+((((ts.min.to_f/15).round)*15)*60)
+    #timeend = ((te.hour.to_f*3600)+3600)+((((te.min.to_f/15).round)*15)*60)
+    #time += ((timeend-timestart)/60)/60
+
+    timestart = ((ts.hour.to_f*3600)+3600)+(ts.min.to_f)*60
+    timeend = ((te.hour.to_f*3600)+3600)+(te.min.to_f)*60
+    time += (((((timeend-timestart)/60.0)/15.0).round)*15.0)/60.0
     
-    time += ((timeend-timestart)/60)/60
     time = 0.25 if time == 0
     return time
   end
@@ -128,4 +112,16 @@ module TimeTracker
     poc.join("\n").strip().gsub(/\n\n\n/,"\n")
   end
   
+end
+
+# mod to time class courtesy of:
+# http://stackoverflow.com/questions/449271/how-to-round-a-time-down-to-the-nearest-15-minutes-in-ruby
+class Time
+  def round(seconds = 60)
+    Time.at((self.to_f / seconds).round * seconds)
+  end
+
+  def floor(seconds = 60)
+    Time.at((self.to_f / seconds).floor * seconds)
+  end
 end
