@@ -12,7 +12,7 @@ TimeTracker.now()</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
-	<string>^N</string>
+	<string>@N</string>
 	<key>name</key>
 	<string>Insert Current Time</string>
 	<key>output</key>

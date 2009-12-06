@@ -12,7 +12,7 @@ TimeTracker.new()</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
-	<string>^A</string>
+	<string>@A</string>
 	<key>name</key>
 	<string>New...</string>
 	<key>output</key>

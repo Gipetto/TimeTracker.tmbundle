@@ -86,10 +86,6 @@ module TimeTracker
     ts = Time.parse(t[0].gsub(/(a|p)/,' \1m'));
     te = Time.parse(t[1].gsub(/(a|p)/,' \1m'));             
 
-    #timestart = ((ts.hour.to_f*3600)+3600)+((((ts.min.to_f/15).round)*15)*60)
-    #timeend = ((te.hour.to_f*3600)+3600)+((((te.min.to_f/15).round)*15)*60)
-    #time += ((timeend-timestart)/60)/60
-
     timestart = ((ts.hour.to_f*3600)+3600)+(ts.min.to_f)*60
     timeend = ((te.hour.to_f*3600)+3600)+(te.min.to_f)*60
     time += (((((timeend-timestart)/60.0)/15.0).round)*15.0)/60.0

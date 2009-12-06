@@ -7,12 +7,12 @@
 	<key>command</key>
 	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
 html_header "TimeTracker"
-Markdown.pl "$TM_BUNDLE_SUPPORT/about.mdown"
+Markdown.pl "$TM_BUNDLE_PATH/README.txt"
 html_footer</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
-	<string>^H</string>
+	<string>@H</string>
 	<key>name</key>
 	<string>About...</string>
 	<key>output</key>

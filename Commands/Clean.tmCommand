@@ -12,7 +12,7 @@ TimeTracker.clean()</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
-	<string>^C</string>
+	<string>@C</string>
 	<key>name</key>
 	<string>Clean</string>
 	<key>output</key>

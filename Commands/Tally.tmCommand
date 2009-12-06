@@ -12,7 +12,7 @@ TimeTracker.tally()</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
-	<string>^T</string>
+	<string>@T</string>
 	<key>name</key>
 	<string>Tally Time</string>
 	<key>output</key>
