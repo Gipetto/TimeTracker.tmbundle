@@ -34,7 +34,7 @@ module TimeTracker
       set[0] = '#' + set[0]
     
       times = set.map! { |line|
-        if line.match(/^- /)
+        if line.match(/^-.*\[.*?\].*?/)
           hours = 0.0
 
           line.match('\[(.*)\]')[1].split(',').map! { |i| 
