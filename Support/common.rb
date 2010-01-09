@@ -22,7 +22,7 @@ module TimeTracker
   
   def self.tally
     doc = self.cleandoc($stdin.read())
-    poc = doc.split('#').map { |i| i.split(/\n/) }    
+    poc = doc.split(/^#/).map { |i| i.split(/\n/) }    
     total_hours = 0.0
     
     for set in poc      
