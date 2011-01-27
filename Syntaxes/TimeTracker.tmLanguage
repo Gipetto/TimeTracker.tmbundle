@@ -10,7 +10,7 @@
 	<string>TimeTracker</string>
 	<key>patterns</key>
 	<array>
-		<dict>
+		<!--<dict>
 			<key>include</key>
 			<string>#link</string>
 		</dict>
@@ -27,7 +27,7 @@
 			<string>^(#.*$\n?)</string>
 			<key>name</key>
 			<string>meta.header-item.time</string>
-		</dict>
+		</dict>-->
 		<dict>
 			<key>captures</key>
 			<dict>
